@@ -11,7 +11,6 @@ using System;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-
 namespace ValueTransformers
 {
     [ MarkupExtensionReturnType( typeof( IValueConverter ) ) ]

@@ -49,6 +49,7 @@
     <Compile Include="Converters\IsNotZero.cs" />
     <Compile Include="Converters\IsNull.cs" />
     <Compile Include="Converters\IsZero.cs" />
+    <Compile Include="Converters\NegateBoolean.cs" />
     <Compile Include="Converters\StringIsEmpty.cs" />
     <Compile Include="Converters\StringIsNotEmpty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

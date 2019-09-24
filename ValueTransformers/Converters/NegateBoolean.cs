@@ -15,11 +15,16 @@ namespace ValueTransformers
 {
     [ MarkupExtensionReturnType( typeof( IValueConverter ) ) ]
 	[ ValueConversion( typeof( object ), typeof( bool ) ) ]
-	public class IsNotZero: MarkupExtension, IValueConverter
+	public class NegateBoolean: MarkupExtension, IValueConverter
 	{
 		public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
         {
-            return Helper.IsZero( value ) == false;
+            if( value is bool b )
+            {
+                return ( bool )b == false;
+            }
+
+            throw new ArgumentException();
 		}
 
 		public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
@@ -27,7 +32,7 @@ namespace ValueTransformers
 			throw new NotSupportedException();
 		}
 
-		private static IsNotZero Converter
+		private static NegateBoolean Converter
         {
             get;
             set;
@@ -37,7 +42,7 @@ namespace ValueTransformers
 		{
 			if( Converter == null )
 			{
-                Converter = new IsNotZero();
+                Converter = new NegateBoolean();
 			}
 
 			return Converter;
