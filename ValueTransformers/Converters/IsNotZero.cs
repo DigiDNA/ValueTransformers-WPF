@@ -20,67 +20,7 @@ namespace ValueTransformers
 	{
 		public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
         {
-            if( value is char )
-            {
-                return ( char )value != 0;
-            }
-
-            if( value is sbyte )
-            {
-                return ( sbyte )value != 0;
-            }
-
-            if( value is byte )
-            {
-                return ( byte )value != 0;
-            }
-
-            if( value is short )
-            {
-                return ( short )value != 0;
-            }
-
-            if( value is ushort )
-            {
-                return ( ushort )value != 0;
-            }
-
-            if( value is int )
-            {
-                return ( int )value != 0;
-            }
-
-            if( value is uint )
-            {
-                return ( uint )value != 0;
-            }
-
-            if( value is long )
-            {
-                return ( long )value != 0;
-            }
-
-            if( value is ulong )
-            {
-                return ( ulong )value != 0;
-            }
-
-            if( value is float )
-            {
-                return ( float )value != 0.0f;
-            }
-
-            if( value is double )
-            {
-                return ( double )value != 0.0d;
-            }
-
-            if( value is decimal )
-            {
-                return ( decimal )value != 0;
-            }
-
-            throw new ArgumentException();
+            return Helper.IsZero( value ) == false;
 		}
 
 		public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
