@@ -11,11 +11,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace ValueTransformers
 {
     internal static class Helper
     {
+        internal static Visibility ToVisibility( Func< bool > isVisible, object parameter )
+        {
+            if( isVisible == null )
+            {
+                throw new ArgumentNullException();
+            }
+
+            return isVisible() ? Visibility.Visible : parameter is string s && s.ToLower() == "collapsed" ? Visibility.Collapsed : Visibility.Hidden;
+        }
+
         internal static bool IsZero( object value )
         {
             if( value is char )
