@@ -69,6 +69,11 @@ namespace ValueTransformers
                 default:                    break;
             }
 
+            if( format.Length == 0 )
+            {
+                return "";
+            }
+
             return dt.ToString( format );
         }
 
