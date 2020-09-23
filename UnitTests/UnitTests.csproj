@@ -62,6 +62,7 @@
     <Compile Include="Tests\StringIsEmptyToVisibility.cs" />
     <Compile Include="Tests\StringIsNotEmpty.cs" />
     <Compile Include="Tests\StringIsNotEmptyToVisibility.cs" />
+    <Compile Include="Tests\StringToInt.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ValueTransformers\ValueTransformers.csproj">
