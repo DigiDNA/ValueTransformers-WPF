@@ -15,12 +15,17 @@ using System.Windows.Markup;
 namespace ValueTransformers
 {
 	[MarkupExtensionReturnType( typeof( IValueConverter ) )]
-	[ValueConversion( typeof( object ), typeof( Visibility ) )]
+	[ValueConversion( typeof( object ), typeof( int ) )]
 	public class StringToInt: MarkupExtension, IValueConverter
 	{
 		public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
 		{
-			if( targetType != typeof( int ) )
+			if( targetType == typeof( string ) )
+			{
+				return this.ConvertBack( value, targetType, parameter, culture );
+			}
+
+			if( targetType != typeof( int ) && targetType != typeof( int? ) )
 			{
 				throw new ArgumentException();
 			}
@@ -40,6 +45,11 @@ namespace ValueTransformers
 
 		public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
 		{
+			if( targetType == typeof( int ) || targetType == typeof( int? ) )
+			{
+				return this.Convert( value, targetType, parameter, culture );
+			}
+
 			if( targetType != typeof( string ) )
 			{
 				throw new ArgumentException();

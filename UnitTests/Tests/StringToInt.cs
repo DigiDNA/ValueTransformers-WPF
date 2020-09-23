@@ -24,6 +24,9 @@ namespace UnitTests
         {
             Assert.AreEqual( 0, this.Converter.Convert( null, typeof( int ), null, null ) );
             Assert.AreEqual( 0, this.Converter.Convert( null, typeof( int ), null, null ) );
+
+            Assert.AreEqual( "", this.Converter.Convert( null, typeof( string ), null, null ) );
+            Assert.AreEqual( "", this.Converter.Convert( null, typeof( string ), null, null ) );
         }
 
         [TestMethod]
@@ -40,6 +43,9 @@ namespace UnitTests
             Assert.AreEqual( -42, this.Converter.Convert( "-42", typeof( int ), null, null ) );
             Assert.AreEqual(   0, this.Converter.Convert( "hello, world", typeof( int ), null, null ) );
             Assert.AreEqual(   0, this.Converter.Convert( "42.0", typeof( int ), null, null ) );
+            
+            Assert.AreEqual( "42",  this.Converter.Convert(  42, typeof( string ), null, null ) );
+            Assert.AreEqual( "-42", this.Converter.Convert( -42, typeof( string ), null, null ) );
         }
 
         [TestMethod]
@@ -53,6 +59,9 @@ namespace UnitTests
         {
             Assert.AreEqual( "", this.Converter.ConvertBack( null, typeof( string ), null, null ) );
             Assert.AreEqual( "", this.Converter.ConvertBack( null, typeof( string ), null, null ) );
+
+            Assert.AreEqual( 0, this.Converter.ConvertBack( null, typeof( int ), null, null ) );
+            Assert.AreEqual( 0, this.Converter.ConvertBack( null, typeof( int ), null, null ) );
         }
 
         [TestMethod]
@@ -60,6 +69,11 @@ namespace UnitTests
         {
             Assert.AreEqual( "42",  this.Converter.ConvertBack(  42, typeof( string ), null, null ) );
             Assert.AreEqual( "-42", this.Converter.ConvertBack( -42, typeof( string ), null, null ) );
+
+            Assert.AreEqual(  42, this.Converter.ConvertBack( "42", typeof( int ), null, null ) );
+            Assert.AreEqual( -42, this.Converter.ConvertBack( "-42", typeof( int ), null, null ) );
+            Assert.AreEqual(   0, this.Converter.ConvertBack( "hello, world", typeof( int ), null, null ) );
+            Assert.AreEqual(   0, this.Converter.ConvertBack( "42.0", typeof( int ), null, null ) );
         }
 
         [TestMethod]
