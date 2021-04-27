@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueTransformers", "ValueTransformers\ValueTransformers.csproj", "{E3BF32CB-99E2-4331-AFB6-9281D79E63BC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{33CC7F9A-B0D0-464A-832B-50E7AF490649}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueTransformers", "ValueTransformers\ValueTransformers.csproj", "{479A9446-7C54-4226-9713-A36AE7007879}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E3BF32CB-99E2-4331-AFB6-9281D79E63BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3BF32CB-99E2-4331-AFB6-9281D79E63BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3BF32CB-99E2-4331-AFB6-9281D79E63BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3BF32CB-99E2-4331-AFB6-9281D79E63BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33CC7F9A-B0D0-464A-832B-50E7AF490649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33CC7F9A-B0D0-464A-832B-50E7AF490649}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33CC7F9A-B0D0-464A-832B-50E7AF490649}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33CC7F9A-B0D0-464A-832B-50E7AF490649}.Release|Any CPU.Build.0 = Release|Any CPU
+		{479A9446-7C54-4226-9713-A36AE7007879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{479A9446-7C54-4226-9713-A36AE7007879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{479A9446-7C54-4226-9713-A36AE7007879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{479A9446-7C54-4226-9713-A36AE7007879}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
