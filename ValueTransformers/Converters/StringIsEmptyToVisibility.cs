@@ -33,7 +33,7 @@ namespace ValueTransformers
 			throw new NotSupportedException();
 		}
 
-		private static StringIsEmptyToVisibility Converter
+		private static StringIsEmptyToVisibility? Converter
         {
             get;
             set;

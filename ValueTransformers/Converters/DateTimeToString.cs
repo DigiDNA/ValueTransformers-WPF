@@ -178,7 +178,7 @@ namespace ValueTransformers
             throw new NotSupportedException();
         }
 
-        private static DateTimeToString Converter
+        private static DateTimeToString? Converter
         {
             get;
             set;

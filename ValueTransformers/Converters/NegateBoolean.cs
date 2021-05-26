@@ -32,7 +32,7 @@ namespace ValueTransformers
 			throw new NotSupportedException();
 		}
 
-		private static NegateBoolean Converter
+		private static NegateBoolean? Converter
         {
             get;
             set;

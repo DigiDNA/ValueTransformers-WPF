@@ -63,7 +63,7 @@ namespace ValueTransformers
 			return "";
 		}
 
-		private static StringToInt Converter
+		private static StringToInt? Converter
 		{
 			get;
 			set;

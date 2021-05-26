@@ -27,7 +27,7 @@ namespace ValueTransformers
 			throw new NotSupportedException();
 		}
 
-		private static IsNull Converter
+		private static IsNull? Converter
         {
             get;
             set;

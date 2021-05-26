@@ -27,7 +27,7 @@ namespace ValueTransformers
 			throw new NotSupportedException();
 		}
 
-		private static IsNotZero Converter
+		private static IsNotZero? Converter
         {
             get;
             set;

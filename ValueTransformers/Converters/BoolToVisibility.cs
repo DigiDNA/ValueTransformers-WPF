@@ -33,7 +33,7 @@ namespace ValueTransformers
 			throw new NotSupportedException();
 		}
 
-		private static BoolToVisibility Converter
+		private static BoolToVisibility? Converter
         {
             get;
             set;

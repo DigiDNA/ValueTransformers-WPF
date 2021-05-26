@@ -27,7 +27,7 @@ namespace ValueTransformers
 			throw new NotSupportedException();
 		}
 
-		private static StringIsEmpty Converter
+		private static StringIsEmpty? Converter
         {
             get;
             set;

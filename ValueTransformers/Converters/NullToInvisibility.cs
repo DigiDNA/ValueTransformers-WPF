@@ -33,7 +33,7 @@ namespace ValueTransformers
 			throw new NotSupportedException();
 		}
 
-		private static NullToInvisibility Converter
+		private static NullToInvisibility? Converter
         {
             get;
             set;

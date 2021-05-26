@@ -33,7 +33,7 @@ namespace ValueTransformers
 			throw new NotSupportedException();
 		}
 
-		private static BoolToInvisibility Converter
+		private static BoolToInvisibility? Converter
         {
             get;
             set;
