@@ -18,17 +18,22 @@ namespace ValueTransformers
 	[ ValueConversion( typeof( bool ), typeof( Visibility ) ) ]
 	public class BoolToInvisibility: MarkupExtension, IValueConverter
 	{
-		public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+		public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
 		{
-            if( targetType != typeof( Visibility ) || ( value is bool ) == false )
-            {
-                throw new ArgumentException();
+			if( targetType != typeof( Visibility ) )
+			{
+				throw new ArgumentException( "Invalid target type", nameof( targetType ) );
 			}
 
-            return Helper.ToVisibility( () => ( bool )value == false, parameter );
+			if( ( value is bool ) == false )
+			{
+				throw new ArgumentException( "Invalid value", nameof( value ) );
+			}
+
+			return Helper.ToVisibility( () => ( bool )value == false, parameter );
         }
 
-        public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+        public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
 		{
 			throw new NotSupportedException();
 		}

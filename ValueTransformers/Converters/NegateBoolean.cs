@@ -17,17 +17,17 @@ namespace ValueTransformers
 	[ ValueConversion( typeof( object ), typeof( bool ) ) ]
 	public class NegateBoolean: MarkupExtension, IValueConverter
 	{
-		public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
-        {
-            if( value is bool b )
+		public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+		{
+			if( value is bool b )
             {
                 return ( bool )b == false;
             }
 
-            throw new ArgumentException();
+			throw new ArgumentException( "Invalid value", nameof( value ) );
 		}
 
-		public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+		public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
 		{
 			throw new NotSupportedException();
 		}

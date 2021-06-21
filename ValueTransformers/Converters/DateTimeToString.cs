@@ -108,19 +108,14 @@ namespace ValueTransformers
             return ToString( ts, this.DateStyle, this.TimeStyle );
         }
 
-        public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
+        public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
         {
             DateFormatStyle dateStyle = this.DateStyle;
             TimeFormatStyle timeStyle = this.TimeStyle;
 
-            if( targetType == null )
-            {
-                targetType = typeof( string );
-            }
-
             if( targetType != typeof( string ) && targetType != typeof( object ) )
             {
-                throw new ArgumentException();
+                throw new ArgumentException( "Invalid target type", nameof( targetType ) );
             }
 
             if( parameter is string format )
@@ -150,14 +145,14 @@ namespace ValueTransformers
                 }
             }
 
-            if( ( value is DateTime ) )
+            if( ( value is DateTime dt ) )
             {
-                return ToString( ( DateTime )value, dateStyle, timeStyle );
+                return ToString( dt, dateStyle, timeStyle );
             }
 
-            if( ( value is long ) )
+            if( ( value is long l ) )
             {
-                return ToString( ( long )value, dateStyle, timeStyle );
+                return ToString( l, dateStyle, timeStyle );
             }
 
             /*
@@ -170,10 +165,10 @@ namespace ValueTransformers
                 return value;
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException( "Invalid value", nameof( value ) );
         }
 
-        public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+        public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
         {
             throw new NotSupportedException();
         }

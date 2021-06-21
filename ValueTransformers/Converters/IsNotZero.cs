@@ -17,12 +17,12 @@ namespace ValueTransformers
 	[ ValueConversion( typeof( object ), typeof( bool ) ) ]
 	public class IsNotZero: MarkupExtension, IValueConverter
 	{
-		public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
-        {
-            return Helper.IsZero( value ) == false;
+		public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+		{
+			return Helper.IsZero( value ) == false;
 		}
 
-		public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+		public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
 		{
 			throw new NotSupportedException();
 		}

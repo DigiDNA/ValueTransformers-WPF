@@ -17,79 +17,98 @@ namespace ValueTransformers
 {
     internal static class Helper
     {
-        internal static Visibility ToVisibility( Func< bool > isVisible, object parameter )
+        internal static Visibility ToVisibility( Func< bool > isVisible, object? parameter )
         {
-            if( isVisible == null )
-            {
-                throw new ArgumentNullException();
-            }
-
             return isVisible() ? Visibility.Visible : parameter is string s && s.ToLower() == "collapsed" ? Visibility.Collapsed : Visibility.Hidden;
         }
 
-        internal static bool IsZero( object value )
+        internal static bool IsZero( object? value )
         {
-            if( value is char )
             {
-                return ( char )value == 0;
+                if( value is char n )
+                {
+                    return n == 0;
+                }
             }
 
-            if( value is sbyte )
             {
-                return ( sbyte )value == 0;
+                if( value is sbyte n )
+                {
+                    return n == 0;
+                }
             }
 
-            if( value is byte )
             {
-                return ( byte )value == 0;
+                if( value is byte n )
+                {
+                    return n == 0;
+                }
             }
 
-            if( value is short )
             {
-                return ( short )value == 0;
+                if( value is short n )
+                {
+                    return n == 0;
+                }
             }
 
-            if( value is ushort )
             {
-                return ( ushort )value == 0;
+                if( value is ushort n )
+                {
+                    return n == 0;
+                }
             }
 
-            if( value is int )
             {
-                return ( int )value == 0;
+                if( value is int n )
+                {
+                    return n == 0;
+                }
             }
 
-            if( value is uint )
             {
-                return ( uint )value == 0;
+                if( value is uint n )
+                {
+                    return n == 0;
+                }
             }
 
-            if( value is long )
             {
-                return ( long )value == 0;
+                if( value is long n )
+                {
+                    return n == 0;
+                }
             }
 
-            if( value is ulong )
             {
-                return ( ulong )value == 0;
+                if( value is ulong n )
+                {
+                    return n == 0;
+                }
             }
 
-            if( value is float )
             {
-                return ( float )value == 0.0f;
+                if( value is float n )
+                {
+                    return n == 0.0f;
+                }
             }
 
-            if( value is double )
             {
-                return ( double )value == 0.0d;
+                if( value is double n )
+                {
+                    return n == 0.0d;
+                }
             }
 
-            if( value is decimal )
             {
-                return ( decimal )value == 0;
+                if( value is decimal n )
+                {
+                    return n == 0;
+                }
             }
 
-            throw new ArgumentException();
+            throw new ArgumentException( "Unsupported type", nameof( value ) );
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ValueTransformers
 	[ValueConversion( typeof( object ), typeof( int ) )]
 	public class StringToInt: MarkupExtension, IValueConverter
 	{
-		public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+		public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
 		{
 			if( targetType == typeof( string ) )
 			{
@@ -27,7 +27,7 @@ namespace ValueTransformers
 
 			if( targetType != typeof( int ) && targetType != typeof( int? ) )
 			{
-				throw new ArgumentException();
+				throw new ArgumentException( "Invalid target type", nameof( targetType ) );
 			}
 
 			if( value is string str )
@@ -43,7 +43,7 @@ namespace ValueTransformers
 			return 0;
 		}
 
-		public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+		public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
 		{
 			if( targetType == typeof( int ) || targetType == typeof( int? ) )
 			{
@@ -52,7 +52,7 @@ namespace ValueTransformers
 
 			if( targetType != typeof( string ) )
 			{
-				throw new ArgumentException();
+				throw new ArgumentException( "Invalid target type", nameof( targetType ) );
 			}
 
 			if( value is int i )

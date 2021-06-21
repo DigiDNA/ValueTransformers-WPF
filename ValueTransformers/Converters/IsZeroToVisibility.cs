@@ -18,17 +18,17 @@ namespace ValueTransformers
 	[ ValueConversion( typeof( object ), typeof( Visibility ) ) ]
 	public class IsZeroToVisibility: MarkupExtension, IValueConverter
 	{
-		public object Convert( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
-        {
-            if( targetType != typeof( Visibility ) )
+		public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+		{
+			if( targetType != typeof( Visibility ) )
             {
-                throw new ArgumentException();
-            }
+				throw new ArgumentException( "Invalid target type", nameof( targetType ) );
+			}
 
-            return Helper.ToVisibility( () => Helper.IsZero( value ), parameter );
+			return Helper.ToVisibility( () => Helper.IsZero( value ), parameter );
         }
 
-        public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+		public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
 		{
 			throw new NotSupportedException();
 		}
