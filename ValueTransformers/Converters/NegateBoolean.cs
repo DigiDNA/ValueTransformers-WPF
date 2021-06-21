@@ -17,7 +17,7 @@ namespace ValueTransformers
 	[ ValueConversion( typeof( object ), typeof( bool ) ) ]
 	public class NegateBoolean: MarkupExtension, IValueConverter
 	{
-		public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+		public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
 		{
 			if( value is bool b )
             {

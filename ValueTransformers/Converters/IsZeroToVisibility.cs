@@ -18,7 +18,7 @@ namespace ValueTransformers
 	[ ValueConversion( typeof( object ), typeof( Visibility ) ) ]
 	public class IsZeroToVisibility: MarkupExtension, IValueConverter
 	{
-		public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+		public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
 		{
 			if( targetType != typeof( Visibility ) )
             {

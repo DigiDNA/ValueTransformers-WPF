@@ -108,7 +108,7 @@ namespace ValueTransformers
             return ToString( ts, this.DateStyle, this.TimeStyle );
         }
 
-        public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+        public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
         {
             DateFormatStyle dateStyle = this.DateStyle;
             TimeFormatStyle timeStyle = this.TimeStyle;
