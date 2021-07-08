@@ -12,7 +12,7 @@ using System.Windows;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests
+namespace ValueTransformers_Test
 {
     [TestClass]
     public class StringToInt

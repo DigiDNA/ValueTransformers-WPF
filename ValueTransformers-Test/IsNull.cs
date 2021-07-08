@@ -10,7 +10,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests
+namespace ValueTransformers_Test
 {
     [ TestClass ]
     public class IsNull
