@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{33CC7F9A-B0D0-464A-832B-50E7AF490649}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValueTransformers-Test", "ValueTransformers-Test\ValueTransformers-Test.csproj", "{33CC7F9A-B0D0-464A-832B-50E7AF490649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueTransformers", "ValueTransformers\ValueTransformers.csproj", "{479A9446-7C54-4226-9713-A36AE7007879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValueTransformers", "ValueTransformers\ValueTransformers.csproj", "{479A9446-7C54-4226-9713-A36AE7007879}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
