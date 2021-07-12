@@ -30,20 +30,11 @@ namespace ValueTransformers
             throw new NotSupportedException();
         }
 
-        private static IsZeroToInvisibility? Converter
-        {
-            get;
-            set;
-        }
+        private static readonly Lazy< IsZeroToInvisibility > Converter = new Lazy< IsZeroToInvisibility >( () => new IsZeroToInvisibility() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
-            if( Converter == null )
-            {
-                Converter = new IsZeroToInvisibility();
-            }
-
-            return Converter;
+            return Converter.Value;
         }
     }
 }

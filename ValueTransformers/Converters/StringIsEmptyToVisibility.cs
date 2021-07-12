@@ -30,20 +30,11 @@ namespace ValueTransformers
             throw new NotSupportedException();
         }
 
-        private static StringIsEmptyToVisibility? Converter
-        {
-            get;
-            set;
-        }
+        private static readonly Lazy< StringIsEmptyToVisibility > Converter = new Lazy< StringIsEmptyToVisibility >( () => new StringIsEmptyToVisibility() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
-            if( Converter == null )
-            {
-                Converter = new StringIsEmptyToVisibility();
-            }
-
-            return Converter;
+            return Converter.Value;
         }
     }
 }

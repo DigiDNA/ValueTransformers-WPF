@@ -170,20 +170,11 @@ namespace ValueTransformers
             throw new NotSupportedException();
         }
 
-        private static DateTimeToString? Converter
-        {
-            get;
-            set;
-        }
+        private static readonly Lazy< DateTimeToString > Converter = new Lazy< DateTimeToString >( () => new DateTimeToString() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
-            if( Converter == null )
-            {
-                Converter = new DateTimeToString();
-            }
-
-            return Converter;
+            return Converter.Value;
         }
     }
 }

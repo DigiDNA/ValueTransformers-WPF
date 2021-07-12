@@ -35,20 +35,11 @@ namespace ValueTransformers
             throw new NotSupportedException();
         }
 
-        private static UppercaseString? Converter
-        {
-            get;
-            set;
-        }
+        private static readonly Lazy< UppercaseString > Converter = new Lazy< UppercaseString >( () => new UppercaseString() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
-            if( Converter == null )
-            {
-                Converter = new UppercaseString();
-            }
-
-            return Converter;
+            return Converter.Value;
         }
     }
 }

@@ -27,20 +27,11 @@ namespace ValueTransformers
             throw new NotSupportedException();
         }
 
-        private static IsZero? Converter
-        {
-            get;
-            set;
-        }
+        private static readonly Lazy< IsZero > Converter = new Lazy< IsZero >( () => new IsZero() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
-            if( Converter == null )
-            {
-                Converter = new IsZero();
-            }
-
-            return Converter;
+            return Converter.Value;
         }
     }
 }

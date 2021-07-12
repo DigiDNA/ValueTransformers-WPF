@@ -63,20 +63,11 @@ namespace ValueTransformers
             return "";
         }
 
-        private static StringToInt? Converter
-        {
-            get;
-            set;
-        }
+        private static readonly Lazy< StringToInt > Converter = new Lazy< StringToInt >( () => new StringToInt() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
-            if( Converter == null )
-            {
-                Converter = new StringToInt();
-            }
-
-            return Converter;
+            return Converter.Value;
         }
     }
 }

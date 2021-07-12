@@ -37,20 +37,11 @@ namespace ValueTransformers
             throw new ArgumentException( "Invalid value", nameof( value ) );
         }
 
-        private static NegateBoolean? Converter
-        {
-            get;
-            set;
-        }
+        private static readonly Lazy< NegateBoolean > Converter = new Lazy< NegateBoolean >( () => new NegateBoolean() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
-            if( Converter == null )
-            {
-                Converter = new NegateBoolean();
-            }
-
-            return Converter;
+            return Converter.Value;
         }
     }
 }

@@ -27,20 +27,11 @@ namespace ValueTransformers
             throw new NotSupportedException();
         }
 
-        private static StringIsNotEmpty? Converter
-        {
-            get;
-            set;
-        }
+        private static readonly Lazy< StringIsNotEmpty > Converter = new Lazy< StringIsNotEmpty >( () => new StringIsNotEmpty() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
-            if( Converter == null )
-            {
-                Converter = new StringIsNotEmpty();
-            }
-
-            return Converter;
+            return Converter.Value;
         }
     }
 }

@@ -35,20 +35,11 @@ namespace ValueTransformers
             throw new NotSupportedException();
         }
 
-        private static BoolToVisibility? Converter
-        {
-            get;
-            set;
-        }
+        private static readonly Lazy< BoolToVisibility > Converter = new Lazy< BoolToVisibility >( () => new BoolToVisibility() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
-            if( Converter == null )
-            {
-                Converter = new BoolToVisibility();
-            }
-
-            return Converter;
+            return Converter.Value;
         }
     }
 }
