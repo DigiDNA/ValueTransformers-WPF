@@ -21,15 +21,20 @@ namespace ValueTransformers
         {
             if( value is bool b )
             {
-                return ( bool )b == false;
+                return b == false;
             }
 
             throw new ArgumentException( "Invalid value", nameof( value ) );
         }
 
-        public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+        public object ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
         {
-            throw new NotSupportedException();
+            if( value is bool b )
+            {
+                return b == false;
+            }
+
+            throw new ArgumentException( "Invalid value", nameof( value ) );
         }
 
         private static NegateBoolean? Converter
