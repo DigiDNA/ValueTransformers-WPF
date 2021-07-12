@@ -13,34 +13,34 @@ using System.Windows.Markup;
 
 namespace ValueTransformers
 {
-	[ MarkupExtensionReturnType( typeof( IValueConverter ) ) ]
-	[ ValueConversion( typeof( object ), typeof( bool ) ) ]
-	public class StringIsNotEmpty: MarkupExtension, IValueConverter
-	{
-		public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
-		{
-			return value is string s && s.Length > 0;
+    [ MarkupExtensionReturnType( typeof( IValueConverter ) ) ]
+    [ ValueConversion( typeof( object ), typeof( bool ) ) ]
+    public class StringIsNotEmpty: MarkupExtension, IValueConverter
+    {
+        public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+        {
+            return value is string s && s.Length > 0;
         }
 
-		public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
-		{
-			throw new NotSupportedException();
-		}
+        public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+        {
+            throw new NotSupportedException();
+        }
 
-		private static StringIsNotEmpty? Converter
+        private static StringIsNotEmpty? Converter
         {
             get;
             set;
         }
 
-		public override object ProvideValue( IServiceProvider serviceProvider )
-		{
-			if( Converter == null )
-			{
-				Converter = new StringIsNotEmpty();
-			}
+        public override object ProvideValue( IServiceProvider serviceProvider )
+        {
+            if( Converter == null )
+            {
+                Converter = new StringIsNotEmpty();
+            }
 
-			return Converter;
-		}
+            return Converter;
+        }
     }
 }

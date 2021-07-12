@@ -14,39 +14,36 @@ using System.Windows.Markup;
 
 namespace ValueTransformers
 {
-	[ MarkupExtensionReturnType( typeof( IValueConverter ) ) ]
-	[ ValueConversion( typeof( object ), typeof( Visibility ) ) ]
-	public class NullToInvisibility: MarkupExtension, IValueConverter
-	{
-		public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
-		{
-			if( targetType != typeof( Visibility ) )
-			{
-				throw new ArgumentException( "Invalid target type", nameof( targetType ) );
-			}
+    [ MarkupExtensionReturnType( typeof( IValueConverter ) ) ]
+    [ ValueConversion( typeof( object ), typeof( Visibility ) ) ]
+    public class NullToInvisibility: MarkupExtension, IValueConverter
+    {
+        public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+        {
+            Helper.CheckTargetType( targetType, typeof( Visibility ) );
 
-			return Helper.ToVisibility( () => value != null, parameter );
+            return Helper.ToVisibility( () => value != null, parameter );
         }
 
-		public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
-		{
-			throw new NotSupportedException();
-		}
+        public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+        {
+            throw new NotSupportedException();
+        }
 
-		private static NullToInvisibility? Converter
+        private static NullToInvisibility? Converter
         {
             get;
             set;
         }
 
-		public override object ProvideValue( IServiceProvider serviceProvider )
-		{
-			if( Converter == null )
-			{
+        public override object ProvideValue( IServiceProvider serviceProvider )
+        {
+            if( Converter == null )
+            {
                 Converter = new NullToInvisibility();
-			}
+            }
 
-			return Converter;
-		}
-	}
+            return Converter;
+        }
+    }
 }

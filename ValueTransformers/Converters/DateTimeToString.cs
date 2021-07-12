@@ -112,11 +112,8 @@ namespace ValueTransformers
         {
             DateFormatStyle dateStyle = this.DateStyle;
             TimeFormatStyle timeStyle = this.TimeStyle;
-
-            if( targetType != typeof( string ) && targetType != typeof( object ) )
-            {
-                throw new ArgumentException( "Invalid target type", nameof( targetType ) );
-            }
+        
+            Helper.CheckTargetType( targetType, typeof( string ) );
 
             if( parameter is string format )
             {

@@ -14,44 +14,41 @@ using System.Windows.Markup;
 
 namespace ValueTransformers
 {
-	[ MarkupExtensionReturnType( typeof( IValueConverter ) ) ]
-	[ ValueConversion( typeof( bool ), typeof( Visibility ) ) ]
-	public class BoolToInvisibility: MarkupExtension, IValueConverter
-	{
-		public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
-		{
-			if( targetType != typeof( Visibility ) )
-			{
-				throw new ArgumentException( "Invalid target type", nameof( targetType ) );
-			}
+    [ MarkupExtensionReturnType( typeof( IValueConverter ) ) ]
+    [ ValueConversion( typeof( bool ), typeof( Visibility ) ) ]
+    public class BoolToInvisibility: MarkupExtension, IValueConverter
+    {
+        public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+        {
+            Helper.CheckTargetType( targetType, typeof( Visibility ) );
 
-			if( ( value is bool ) == false )
-			{
-				throw new ArgumentException( "Invalid value", nameof( value ) );
-			}
+            if( ( value is bool ) == false )
+            {
+                throw new ArgumentException( "Invalid value", nameof( value ) );
+            }
 
-			return Helper.ToVisibility( () => ( bool )value == false, parameter );
+            return Helper.ToVisibility( () => ( bool )value == false, parameter );
         }
 
         public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
-		{
-			throw new NotSupportedException();
-		}
+        {
+            throw new NotSupportedException();
+        }
 
-		private static BoolToInvisibility? Converter
+        private static BoolToInvisibility? Converter
         {
             get;
             set;
         }
 
-		public override object ProvideValue( IServiceProvider serviceProvider )
-		{
-			if( Converter == null )
-			{
+        public override object ProvideValue( IServiceProvider serviceProvider )
+        {
+            if( Converter == null )
+            {
                 Converter = new BoolToInvisibility();
-			}
+            }
 
-			return Converter;
-		}
-	}
+            return Converter;
+        }
+    }
 }

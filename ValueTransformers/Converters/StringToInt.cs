@@ -14,69 +14,69 @@ using System.Windows.Markup;
 
 namespace ValueTransformers
 {
-	[MarkupExtensionReturnType( typeof( IValueConverter ) )]
-	[ValueConversion( typeof( object ), typeof( int ) )]
-	public class StringToInt: MarkupExtension, IValueConverter
-	{
-		public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
-		{
-			if( targetType == typeof( string ) )
-			{
-				return this.ConvertBack( value, targetType, parameter, culture );
-			}
+    [MarkupExtensionReturnType( typeof( IValueConverter ) )]
+    [ValueConversion( typeof( object ), typeof( int ) )]
+    public class StringToInt: MarkupExtension, IValueConverter
+    {
+        public object Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+        {
+            if( targetType == typeof( string ) )
+            {
+                return this.ConvertBack( value, targetType, parameter, culture );
+            }
 
-			if( targetType != typeof( int ) && targetType != typeof( int? ) )
-			{
-				throw new ArgumentException( "Invalid target type", nameof( targetType ) );
-			}
+            if( targetType != typeof( int ) && targetType != typeof( int? ) )
+            {
+                throw new ArgumentException( "Invalid target type", nameof( targetType ) );
+            }
 
-			if( value is string str )
-			{
-				try
-				{
-					return int.Parse( str );
-				}
-				catch
-				{}
-			}
+            if( value is string str )
+            {
+                try
+                {
+                    return int.Parse( str );
+                }
+                catch
+                {}
+            }
 
-			return 0;
-		}
+            return 0;
+        }
 
-		public object ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
-		{
-			if( targetType == typeof( int ) || targetType == typeof( int? ) )
-			{
-				return this.Convert( value, targetType, parameter, culture );
-			}
+        public object ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+        {
+            if( targetType == typeof( int ) || targetType == typeof( int? ) )
+            {
+                return this.Convert( value, targetType, parameter, culture );
+            }
 
-			if( targetType != typeof( string ) )
-			{
-				throw new ArgumentException( "Invalid target type", nameof( targetType ) );
-			}
+            if( targetType != typeof( string ) )
+            {
+                throw new ArgumentException( "Invalid target type", nameof( targetType ) );
+            }
 
-			if( value is int i )
-			{
-				return i.ToString();
-			}
+            if( value is int i )
+            {
+                return i.ToString();
+            }
 
-			return "";
-		}
+            return "";
+        }
 
-		private static StringToInt? Converter
-		{
-			get;
-			set;
-		}
+        private static StringToInt? Converter
+        {
+            get;
+            set;
+        }
 
-		public override object ProvideValue( IServiceProvider serviceProvider )
-		{
-			if( Converter == null )
-			{
-				Converter = new StringToInt();
-			}
+        public override object ProvideValue( IServiceProvider serviceProvider )
+        {
+            if( Converter == null )
+            {
+                Converter = new StringToInt();
+            }
 
-			return Converter;
-		}
-	}
+            return Converter;
+        }
+    }
 }
