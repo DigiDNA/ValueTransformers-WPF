@@ -15,14 +15,14 @@ using System.Windows;
 
 namespace ValueTransformers
 {
-    internal static class Helper
+    public static class Helper
     {
-        internal static Visibility ToVisibility( Func< bool > isVisible, object? parameter )
+        public static Visibility ToVisibility( Func< bool > isVisible, object? parameter )
         {
             return isVisible() ? Visibility.Visible : parameter is string s && s.ToLower() == "collapsed" ? Visibility.Collapsed : Visibility.Hidden;
         }
     
-        static void CheckTargetType( Type target, Type expected )
+        public static void CheckTargetType( Type target, Type expected )
         {
             if( target == null  )
             {
@@ -40,7 +40,7 @@ namespace ValueTransformers
             }
         }
     
-        internal static bool IsZero( object? value )
+        public static bool IsZero( object? value )
         {
             {
                 if( value is char n )
