@@ -18,8 +18,43 @@ namespace ValueTransformers
     [ ValueConversion( typeof( ulong ), typeof( String ) ) ]
     public class BytesToString: MarkupExtension, IValueConverter
     {
-        public static Func< ulong, String >? CustomFormatter = null;
+        public enum Prefix
+        {
+            Binary,
+            Decimal
+        }
         
+        public static Func< ulong, Prefix, string >? CustomFormatter = null;
+
+        public static string StringFromBytes( ulong bytes, Prefix prefix = Prefix.Binary )
+        {
+            if( CustomFormatter is Func< ulong, Prefix, string > formatter )
+            {
+                return formatter( bytes, prefix );
+            }
+
+            ulong p = ( ulong )( ( prefix == Prefix.Binary ) ? 1024 : 1000 );
+
+            if( bytes < p )
+            {
+                return bytes + " bytes";
+            }
+            else if( bytes < p * p )
+            {
+                return ( ( double )bytes / p ).ToString( "0.00 KB", System.Globalization.CultureInfo.InvariantCulture );
+            }
+            else if( bytes < p * p * p )
+            {
+                return ( ( double )bytes / p / p ).ToString( "0.00 MB", System.Globalization.CultureInfo.InvariantCulture );
+            }
+            else if( bytes < p * p * p * p )
+            {
+                return ( ( double )bytes / p / p / p ).ToString( "0.00 GB", System.Globalization.CultureInfo.InvariantCulture );
+            }
+
+            return ( ( double )bytes / p / p / p / p ).ToString( "0.00 TB", System.Globalization.CultureInfo.InvariantCulture );
+        }
+
         public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
         {
             Helper.CheckTargetType( targetType, typeof( String ) );
@@ -28,26 +63,22 @@ namespace ValueTransformers
             {
                 return null;
             }
+
+            ulong bytes = 0;
             
-            ulong bytes = 0
-            
-                 if( value is sbyte  sb ) { bytes = sb; }
-            else if( value is byte    b ) { bytes =  b; }
-            else if( value is char    c ) { bytes =  c; }
-            else if( value is uchar  uc ) { bytes = uc; }
-            else if( value is short   s ) { bytes =  s; }
+                 if( value is sbyte  sb ) { bytes = ( ulong )sb; }
+            else if( value is byte    b ) { bytes = b; }
+            else if( value is char    c ) { bytes = c; }
+            else if( value is short   s ) { bytes = ( ulong )s; }
             else if( value is ushort us ) { bytes = us; }
-            else if( value is int     i ) { bytes =  i; }
+            else if( value is int     i ) { bytes = ( ulong )i; }
             else if( value is uint   ui ) { bytes = ui; }
-            else if( value is long    l ) { bytes =  l; }
+            else if( value is long    l ) { bytes = ( ulong )l; }
             else if( value is ulong  ul ) { bytes = ul; }
+
+            Prefix prefix = ( parameter is string p && p.ToLower() == "decimal" ) ? Prefix.Decimal : Prefix.Binary;
             
-            if( CustomFormatter is Func< ulong, String > formatter )
-            {
-                return formatter( bytes );
-            }
-            
-            return null;
+            return StringFromBytes( bytes, prefix );
         }
 
         public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
