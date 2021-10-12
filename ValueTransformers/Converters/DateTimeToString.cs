@@ -108,7 +108,6 @@ namespace ValueTransformers
         {}
 
         public DateTimeToString( DateFormatStyle dateStyle, TimeFormatStyle timeStyle )
-<<<<<<< HEAD
         {
             this.DateStyle = dateStyle;
             this.TimeStyle = timeStyle;
@@ -191,107 +190,6 @@ namespace ValueTransformers
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
             return Converter.Value;
-=======
-        {
-            this.DateStyle = dateStyle;
-            this.TimeStyle = timeStyle;
-        }
-
-        public string Convert( DateTime dt )
-        {
-            return ToString( dt, this.DateStyle, this.TimeStyle );
-        }
-
-        public string Convert( long ts )
-        {
-            return ToString( ts, this.DateStyle, this.TimeStyle );
-        }
-
-        public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
-        {
-            DateFormatStyle dateStyle = this.DateStyle;
-            TimeFormatStyle timeStyle = this.TimeStyle;
-
-            if( targetType == null )
-            {
-                targetType = typeof( string );
-            }
-
-            if( targetType != typeof( string ) && targetType != typeof( object ) )
-            {
-                throw new ArgumentException();
-            }
-
-            if( parameter is string format )
-            {
-                string[] options = format.ToLower().Split( ':' );
-
-                if( options.Length > 0 )
-                {
-                    switch( options[ 0 ] )
-                    {
-                        case "none":  dateStyle = DateFormatStyle.None;  timeStyle = TimeFormatStyle.None;  break;
-                        case "short": dateStyle = DateFormatStyle.Short; timeStyle = TimeFormatStyle.Short; break;
-                        case "long":  dateStyle = DateFormatStyle.Long;  timeStyle = TimeFormatStyle.Long;  break;
-                        default:      break;
-                    }
-                }
-
-                if( options.Length > 1 )
-                {
-                    switch( options[ 1 ] )
-                    {
-                        case "none":  timeStyle = TimeFormatStyle.None;  break;
-                        case "short": timeStyle = TimeFormatStyle.Short; break;
-                        case "long":  timeStyle = TimeFormatStyle.Long;  break;
-                        default:      break;
-                    }
-                }
-            }
-
-            if( ( value is DateTime ) )
-            {
-                return ToString( ( DateTime )value, dateStyle, timeStyle );
-            }
-
-            if( ( value is long ) )
-            {
-                return ToString( ( long )value, dateStyle, timeStyle );
-            }
-
-            /*
-             * This is to support date properties in iMazing's StorageItemNode, that may sometimes
-             * return a string instead of a DateTime.
-             * Really poor design choice, but as I don't want to touch that...
-             */
-            if( value is string )
-            {
-                return value;
-            }
-
-            throw new ArgumentException();
-        }
-
-        public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
-        {
-            throw new NotSupportedException();
-        }
-
-        private static DateTimeToString Converter
-        {
-            get;
-            set;
-        }
-
-        public override object ProvideValue( IServiceProvider serviceProvider )
-        {
-            if( Converter == null )
-            {
-                Converter = new DateTimeToString();
-            }
-
-            return Converter;
->>>>>>> main
         }
     }
 }
