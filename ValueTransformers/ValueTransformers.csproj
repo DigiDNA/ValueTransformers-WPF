@@ -4,7 +4,10 @@
         <TargetFrameworks>net462</TargetFrameworks>
         <UseWPF>true</UseWPF>
         <Authors>DigiDNA</Authors>
-        <Copyright>Copyright ©  2019</Copyright>
+        <Copyright>Copyright ©  2021</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/DigiDNA/ValueTransformers-WPF</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/DigiDNA/ValueTransformers-WPF</RepositoryUrl>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
