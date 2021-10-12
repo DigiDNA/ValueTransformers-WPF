@@ -8,6 +8,7 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/DigiDNA/ValueTransformers-WPF</PackageProjectUrl>
         <RepositoryUrl>https://github.com/DigiDNA/ValueTransformers-WPF</RepositoryUrl>
+        <Description>A set of useful WPF value transformers.</Description>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
