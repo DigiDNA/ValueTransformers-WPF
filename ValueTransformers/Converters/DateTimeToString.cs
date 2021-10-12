@@ -1,10 +1,25 @@
 ﻿/*******************************************************************************
- * Copyright (c) 2019, DigiDNA
- * All rights reserved
+ * The MIT License (MIT)
  * 
- * Unauthorised copying of this copyrighted work, via any medium is strictly
- * prohibited.
- * Proprietary and confidential.
+ * Copyright (c) 2021 DigiDNA - www.imazing.com
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  ******************************************************************************/
 
 using System;
@@ -93,6 +108,7 @@ namespace ValueTransformers
         {}
 
         public DateTimeToString( DateFormatStyle dateStyle, TimeFormatStyle timeStyle )
+<<<<<<< HEAD
         {
             this.DateStyle = dateStyle;
             this.TimeStyle = timeStyle;
@@ -175,6 +191,107 @@ namespace ValueTransformers
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
             return Converter.Value;
+=======
+        {
+            this.DateStyle = dateStyle;
+            this.TimeStyle = timeStyle;
+        }
+
+        public string Convert( DateTime dt )
+        {
+            return ToString( dt, this.DateStyle, this.TimeStyle );
+        }
+
+        public string Convert( long ts )
+        {
+            return ToString( ts, this.DateStyle, this.TimeStyle );
+        }
+
+        public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
+        {
+            DateFormatStyle dateStyle = this.DateStyle;
+            TimeFormatStyle timeStyle = this.TimeStyle;
+
+            if( targetType == null )
+            {
+                targetType = typeof( string );
+            }
+
+            if( targetType != typeof( string ) && targetType != typeof( object ) )
+            {
+                throw new ArgumentException();
+            }
+
+            if( parameter is string format )
+            {
+                string[] options = format.ToLower().Split( ':' );
+
+                if( options.Length > 0 )
+                {
+                    switch( options[ 0 ] )
+                    {
+                        case "none":  dateStyle = DateFormatStyle.None;  timeStyle = TimeFormatStyle.None;  break;
+                        case "short": dateStyle = DateFormatStyle.Short; timeStyle = TimeFormatStyle.Short; break;
+                        case "long":  dateStyle = DateFormatStyle.Long;  timeStyle = TimeFormatStyle.Long;  break;
+                        default:      break;
+                    }
+                }
+
+                if( options.Length > 1 )
+                {
+                    switch( options[ 1 ] )
+                    {
+                        case "none":  timeStyle = TimeFormatStyle.None;  break;
+                        case "short": timeStyle = TimeFormatStyle.Short; break;
+                        case "long":  timeStyle = TimeFormatStyle.Long;  break;
+                        default:      break;
+                    }
+                }
+            }
+
+            if( ( value is DateTime ) )
+            {
+                return ToString( ( DateTime )value, dateStyle, timeStyle );
+            }
+
+            if( ( value is long ) )
+            {
+                return ToString( ( long )value, dateStyle, timeStyle );
+            }
+
+            /*
+             * This is to support date properties in iMazing's StorageItemNode, that may sometimes
+             * return a string instead of a DateTime.
+             * Really poor design choice, but as I don't want to touch that...
+             */
+            if( value is string )
+            {
+                return value;
+            }
+
+            throw new ArgumentException();
+        }
+
+        public object ConvertBack( object value, Type targetType, object parameter, System.Globalization.CultureInfo culture )
+        {
+            throw new NotSupportedException();
+        }
+
+        private static DateTimeToString Converter
+        {
+            get;
+            set;
+        }
+
+        public override object ProvideValue( IServiceProvider serviceProvider )
+        {
+            if( Converter == null )
+            {
+                Converter = new DateTimeToString();
+            }
+
+            return Converter;
+>>>>>>> main
         }
     }
 }
