@@ -10,16 +10,30 @@ ValueTransformers-WPF
 About
 -----
 
-A set of useful WPF value transformers.
+A set of useful WPF value transformers:
+
+  - `BoolToInvisibility`
+  - `BoolToVisibility`
+  - `DateTimeToString`
+  - `IsNotNull`
+  - `IsNotZero`
+  - `IsNull`
+  - `IsZero`
+  - `IsZeroToInvisibility`
+  - `IsZeroToVisibility`
+  - `NegateBoolean`
+  - `NullToInvisibility`
+  - `NullToVisibility`
+  - `StringIsEmpty`
+  - `StringIsEmptyToVisibility`
+  - `StringIsNotEmpty`
+  - `StringIsNotEmptyToVisibility`
+  - `StringToInt`
 
 License
 -------
 
-> Copyright (c) 2019, DigiDNA - www.imazing.com  
-> All rights reserved
-> 
-> **Unauthorised copying of this copyrighted work, via any medium is strictly prohibited.  
-> Proprietary and confidential.**
+Project is released under the terms of the MIT License.
 
 Repository Infos
 ----------------
