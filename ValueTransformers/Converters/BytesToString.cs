@@ -86,7 +86,7 @@ namespace ValueTransformers
             throw new NotSupportedException();
         }
 
-        private static readonly Lazy< BoolToVisibility > Converter = new Lazy< BoolToVisibility >( () => new BoolToVisibility() );
+        private static readonly Lazy< BytesToString > Converter = new Lazy< BytesToString >( () => new BytesToString() );
 
         public override object ProvideValue( IServiceProvider serviceProvider )
         {
