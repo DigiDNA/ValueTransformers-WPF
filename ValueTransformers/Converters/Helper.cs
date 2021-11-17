@@ -42,6 +42,24 @@ namespace ValueTransformers
             return isVisible() ? Visibility.Visible : parameter is string s && s.ToLower() == "collapsed" ? Visibility.Collapsed : Visibility.Hidden;
         }
 
+        public static void CheckTargetType( Type target, Type expected )
+        {
+            if( target == null )
+            {
+                throw new ArgumentNullException( nameof( target ) );
+            }
+
+            if( expected == null )
+            {
+                throw new ArgumentNullException( nameof( expected ) );
+            }
+
+            if( target != typeof( object ) && target != expected && target.IsSubclassOf( expected ) == false )
+            {
+                throw new ArgumentException( "Invalid target type", nameof( target ) );
+            }
+        }
+
         internal static bool IsZero( object value )
         {
             if( value is char )
