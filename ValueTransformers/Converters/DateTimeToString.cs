@@ -157,6 +157,11 @@ namespace ValueTransformers
                 }
             }
 
+            if( value is null )
+            {
+                return "";
+            }
+
             if( ( value is DateTime dt ) )
             {
                 return ToString( dt, dateStyle, timeStyle );
