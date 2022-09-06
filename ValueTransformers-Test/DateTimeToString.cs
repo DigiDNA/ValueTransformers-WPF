@@ -84,5 +84,11 @@ namespace ValueTransformers_Test
             Assert.ThrowsException< ArgumentException >( () => this.Converter.Convert( this.Date, typeof( bool ),   null, null ) );
             Assert.ThrowsException< ArgumentException >( () => this.Converter.Convert( true,      typeof( string ), null, null ) );
         }
+
+        [TestMethod]
+        public void TestNull()
+        {
+            Assert.AreEqual( "", this.Converter.Convert( null, typeof( string ), null, null ) );
+        }
     }
 }
