@@ -23,42 +23,44 @@
  ******************************************************************************/
 
 using System;
-using System.Windows;
+using System.Windows.Data;
+using System.Windows.Markup;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace ValueTransformers_Test
+namespace ValueTransformers
 {
-    [TestClass]
-    public class MultipliedBy
-    {
-        private readonly ValueTransformers.MultipliedBy Converter = new ValueTransformers.MultipliedBy();
+	[MarkupExtensionReturnType( typeof( IValueConverter ) )]
+	[ValueConversion( typeof( object ), typeof( object ) )]
+	public class BySubtracting: MarkupExtension, IValueConverter
+	{
+		public object? Convert( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+		{
+			if( parameter == null )
+			{
+				parameter = 0;
+			}
 
-        [TestMethod]
-        public void TestType()
-        {
-            Assert.IsTrue( this.Converter.Convert( 1.0, typeof( int ),   1.0, null ) is int );
-            Assert.IsTrue( this.Converter.Convert( 1,   typeof( float ), 1,   null ) is float );
-        }
+			return new ByAdding().Convert( value, targetType, -System.Convert.ToDouble( parameter ), culture );
+		}
 
-        [TestMethod]
-        public void Test()
-        {
-            Assert.AreEqual(  0, this.Converter.Convert( 42, typeof( int ), 0, null ) );
-            Assert.AreEqual( 42, this.Converter.Convert( 42, typeof( int ), 1, null ) );
-            Assert.AreEqual( 84, this.Converter.Convert( 42, typeof( int ), 2, null ) );
-        }
+		public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )
+		{
+			throw new NotSupportedException();
+		}
 
-        [TestMethod]
-        public void TestNullValue()
-        {
-            Assert.AreEqual( null, this.Converter.Convert( null, typeof( int ), 1, null ) );
-        }
+		private static BySubtracting? Converter
+		{
+			get;
+			set;
+		}
 
-        [TestMethod]
-        public void TestNullParameter()
-        {
-            Assert.AreEqual( 42, this.Converter.Convert( 42, typeof( int ), null, null ) );
-        }
-    }
+		public override object ProvideValue( IServiceProvider serviceProvider )
+		{
+			if( Converter == null )
+			{
+				Converter = new BySubtracting();
+			}
+
+			return Converter;
+		}
+	}
 }

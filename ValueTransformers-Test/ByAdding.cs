@@ -30,23 +30,25 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ValueTransformers_Test
 {
     [TestClass]
-    public class MultipliedBy
+    public class ByAdding
     {
-        private readonly ValueTransformers.MultipliedBy Converter = new ValueTransformers.MultipliedBy();
+        private readonly ValueTransformers.ByAdding Converter = new ValueTransformers.ByAdding();
 
         [TestMethod]
         public void TestType()
         {
-            Assert.IsTrue( this.Converter.Convert( 1.0, typeof( int ),   1.0, null ) is int );
-            Assert.IsTrue( this.Converter.Convert( 1,   typeof( float ), 1,   null ) is float );
+            Assert.IsTrue( this.Converter.Convert( 1.0, typeof( int ), 1.0, null ) is int );
+            Assert.IsTrue( this.Converter.Convert( 1, typeof( float ), 1, null ) is float );
         }
 
         [TestMethod]
         public void Test()
         {
-            Assert.AreEqual(  0, this.Converter.Convert( 42, typeof( int ), 0, null ) );
-            Assert.AreEqual( 42, this.Converter.Convert( 42, typeof( int ), 1, null ) );
-            Assert.AreEqual( 84, this.Converter.Convert( 42, typeof( int ), 2, null ) );
+            Assert.AreEqual( 42, this.Converter.Convert( 42, typeof( int ), 0, null ) );
+            Assert.AreEqual( 43, this.Converter.Convert( 42, typeof( int ), 1, null ) );
+            Assert.AreEqual( 44, this.Converter.Convert( 42, typeof( int ), 2, null ) );
+            Assert.AreEqual( 41, this.Converter.Convert( 42, typeof( int ), -1, null ) );
+            Assert.AreEqual( 40, this.Converter.Convert( 42, typeof( int ), -2, null ) );
         }
 
         [TestMethod]
