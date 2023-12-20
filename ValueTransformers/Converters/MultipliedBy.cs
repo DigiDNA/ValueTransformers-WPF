@@ -44,7 +44,7 @@ namespace ValueTransformers
                 parameter = 1;
             }
 
-			double n = System.Convert.ToDouble( value ) * System.Convert.ToDouble( parameter );
+			double n = Helper.ParseDouble( value ) * Helper.ParseDouble( parameter );
 
 			if( targetType == typeof( char ) )
             {

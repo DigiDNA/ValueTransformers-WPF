@@ -39,7 +39,7 @@ namespace ValueTransformers
 				parameter = 1;
 			}
 
-			return new MultipliedBy().Convert( value, targetType, 1.0 / System.Convert.ToDouble( parameter ), culture );
+			return new MultipliedBy().Convert( value, targetType, 1.0 / Helper.ParseDouble( parameter ), culture );
 		}
 
 		public object? ConvertBack( object? value, Type targetType, object? parameter, System.Globalization.CultureInfo? culture )

@@ -143,5 +143,15 @@ namespace ValueTransformers
 
             throw new ArgumentException( "Unsupported type", nameof( value ) );
         }
+
+        public static double ParseDouble( object? o )
+        {
+            if( o is string str )
+            {
+                return double.Parse( str, System.Globalization.CultureInfo.InvariantCulture );
+            }
+
+            return Convert.ToDouble( o );
+        }
     }
 }
