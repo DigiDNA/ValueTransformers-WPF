@@ -94,9 +94,16 @@ namespace ValueTransformers
 
         public static DateTime DateTimeFromUnixTimestamp( long ts, DateTimeKind kind = DateTimeKind.Utc )
         {
-            DateTime dt = new DateTime( 1970, 1, 1, 0, 0, 0, 0, kind );
+            try
+            {
+                DateTime dt = new DateTime( 1970, 1, 1, 0, 0, 0, 0, kind );
 
-            return dt.AddSeconds( ts ).ToLocalTime();
+                return dt.AddSeconds( ts ).ToLocalTime();
+            }
+            catch( ArgumentOutOfRangeException )
+            {
+                return new DateTime( 1970, 1, 1, 0, 0, 0, 0, kind ).ToLocalTime();
+            }
         }
 
         public static string ToString( long ts, DateFormatStyle dateStyle, TimeFormatStyle timeStyle )
