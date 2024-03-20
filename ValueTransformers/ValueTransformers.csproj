@@ -12,7 +12,7 @@
         <PackageProjectUrl>https://github.com/DigiDNA/ValueTransformers-WPF</PackageProjectUrl>
         <RepositoryUrl>https://github.com/DigiDNA/ValueTransformers-WPF</RepositoryUrl>
         <Description>A set of useful WPF value transformers.</Description>
-        <Version>2.0.6</Version>
+        <Version>2.0.7</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
